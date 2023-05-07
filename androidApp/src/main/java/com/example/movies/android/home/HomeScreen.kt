@@ -48,9 +48,6 @@ fun HomeScreen(
             content = {
                 itemsIndexed(
                     uiState.movies,
-                    key = { _, movie ->
-                        movie.id
-                    }
                 ) { index, movie ->
                     MovieListItem(movie = movie, onMovieClick = { navigationToDetail(movie) })
                     if (index >= uiState.movies.size - 1 && !uiState.loading && !uiState.loadFinished) {

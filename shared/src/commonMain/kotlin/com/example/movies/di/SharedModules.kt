@@ -5,26 +5,25 @@ import com.example.movies.data.remote.RemoteDataSource
 import com.example.movies.data.repository.MovieRepositoryImpl
 import com.example.movies.domain.repository.MovieRepository
 import com.example.movies.domain.usecase.GetMovieUsesCase
+import com.example.movies.domain.usecase.GetMoviesUsesCase
 import com.example.movies.provideDispatcher
 import org.koin.dsl.module
 
 private val dataModule = module {
-    factory {
-        RemoteDataSource(get(),get())
-    }
-    factory {
-        MovieService()
-    }
+    factory { RemoteDataSource(get(), get()) }
+    factory { MovieService() }
 }
+
 private val utilityModule = module {
     factory { provideDispatcher() }
 }
+
 private val domainModule = module {
-    single<MovieRepository> {
-        MovieRepositoryImpl(get())
-    }
-    factory { GetMovieUsesCase() }
+    single<MovieRepository> { MovieRepositoryImpl(get()) }
+    factory { GetMoviesUsesCase() }
     factory { GetMovieUsesCase() }
 }
+
 private val sharedModules = listOf(domainModule, dataModule, utilityModule)
+
 fun getSharedModules() = sharedModules

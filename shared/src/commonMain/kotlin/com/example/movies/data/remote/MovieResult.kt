@@ -1,8 +1,8 @@
 package com.example.movies.data.remote
 
-import kotlinx.serialization.Serializable
 
-@Serializable
+
+@kotlinx.serialization.Serializable
 internal data class MovieResult(
     val results :List<MovieRemote>
 )
